@@ -1,5 +1,5 @@
 function rho = densityMatrix(H,T)
-%%  DENSITYMATRIC Returns the density matrix \rho = exp(-\beta H)
+%%  DENSITYMATRIX Returns the density matrix \rho = exp(-\beta H)
 %   This function has two required input arguments:
 %     H: the input Hamiltonian
 %     T: the temperature 
@@ -21,7 +21,9 @@ function rho = densityMatrix(H,T)
 
 if T < 0.005
     erro('T is too small. Set a larger value for the temperature')
+else
 expH = expm(-H/T);
 Z = trace(expH);
 rho = expH/Z;
+end
 end
