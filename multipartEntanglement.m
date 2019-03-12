@@ -23,8 +23,8 @@ function mpe = multipartEntanglement(v,L)
 
 bound = boundQFI(L);
 mpe = v;
-mpe(mpe < L) = 0; 
-mpe(v == L^2) = L;
+mpe(mpe <= L) = 0; 
+mpe(v == L^2) = L-1;
 for ik = 2:L
 mpe(v > bound(ik-1) & v < bound(ik)) = ik-1;
 end
