@@ -1,5 +1,33 @@
 #	Quantum Fisher information Toolbox 
 This repository contains is a toolbox for exploring and manipulating multipartite entanglement and quantum Fisher information.
+
+## Installation and Setup
+
+To use the QFIEntanglementToolbox:
+1. Clone this repository or download the source code.
+2. Add the `src/` directory (located at the root of the repository) to your MATLAB path. You can do this using the `addpath` command in MATLAB, for example:
+   ```matlab
+   addpath('path/to/repository/src');
+   % Optionally, save the path for future MATLAB sessions
+   % savepath; 
+   ```
+3. Alternatively, you can add the root directory of the toolbox to the path, and then the package structure will be accessible.
+
+## Basic Usage
+
+Functions in this toolbox are organized into packages.
+- Core physics functions are in the `QFIEntanglementToolbox` package. For example, to generate a GHZ state:
+  ```matlab
+  state = QFIEntanglementToolbox.GHZState(3);
+  ```
+- Utility functions are in the `QFIEntanglementToolbox.utils` sub-package. For example, to clean a matrix:
+  ```matlab
+  cleanedMatrix = QFIEntanglementToolbox.utils.cleanMat(originalMatrix, 1e-5);
+  ```
+Refer to the `Contents.m` files within these packages (`src/+QFIEntanglementToolbox/Contents.m` and `src/+QFIEntanglementToolbox/+utils/Contents.m`) or the generated API documentation for a full list of functions.
+
+Example scripts demonstrating the use of various toolbox functions can be found in the `examples/` directory (to be populated).
+
 ## Theoretical background
 Given a pure quantum state <img src="/tex/a516492fcf72611ad6fe4454514c00de.svg?invert_in_darkmode&sanitize=true" align=middle width=33.21534479999999pt height=24.65753399999998pt/>, we say that <img src="/tex/a516492fcf72611ad6fe4454514c00de.svg?invert_in_darkmode&sanitize=true" align=middle width=33.21534479999999pt height=24.65753399999998pt/> is <img src="/tex/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>-particle entangled if it can be written as a tensor product <img src="/tex/9a6a0f20f0fc6c95816cd745b745ad46.svg?invert_in_darkmode&sanitize=true" align=middle width=144.70084365pt height=27.6567522pt/>, where <img src="/tex/abe87f228577615a6de835b8b5b8f25e.svg?invert_in_darkmode&sanitize=true" align=middle width=56.68753199999998pt height=22.831056599999986pt/>, (<img src="/tex/0bdad6182d7535454478cc28423eb6bf.svg?invert_in_darkmode&sanitize=true" align=middle width=111.83413889999997pt height=32.256008400000006pt/>) is the number of particles (spins) in the <img src="/tex/62d9baf838ff4f7ef880a8a05fde9427.svg?invert_in_darkmode&sanitize=true" align=middle width=27.094918949999986pt height=27.91243950000002pt/> state and <img src="/tex/0180a951f100647f1e1e27a3849078ef.svg?invert_in_darkmode&sanitize=true" align=middle width=131.89890615pt height=27.6567522pt/> cannot be further factorized. 
 
@@ -19,8 +47,18 @@ where <img src="/tex/d78fd480dd8c7776dd798cc6bcab8e70.svg?invert_in_darkmode&san
 
 ## Main functions 
 
-- `bipartiteEntanglement.m` -  Entropy of entanglement of a bipartite state.
-- `heisenbergXXZ.m` -  one-dimensional XXZ spin-1/2 Heisenberg Hamiltonian.
-- `phaseShiftEnsemble.m`- ensemble of linear phase shift operators.
-- `phaseShiftGenerator.m`-  linear phase shift operators for a specific Bloch sphere vector orientation.
-- `stateQFI.m`- estimated quantum Fisher information for a given input state
+This toolbox provides a range of functions for quantum information and entanglement analysis. Key functions include:
+- `QFIEntanglementToolbox.bipartiteEntanglement` - Entropy of entanglement of a bipartite state.
+- `QFIEntanglementToolbox.heisenbergXXZ` - one-dimensional XXZ spin-1/2 Heisenberg Hamiltonian.
+- `QFIEntanglementToolbox.phaseShiftEnsemble` - ensemble of linear phase shift operators.
+- `QFIEntanglementToolbox.phaseShiftGenerator` - linear phase shift operators for a specific Bloch sphere vector orientation.
+- `QFIEntanglementToolbox.stateQFI` - estimated quantum Fisher information for a given input state.
+
+Many other core functions (e.g., `GHZState`, `densityMatrix`, `PartialTrace`) and utility functions (e.g., `mKron`, `cleanMat` in the `QFIEntanglementToolbox.utils` package) are available. Consult the `Contents.m` files or the API documentation for a complete list.
+
+## Dependencies
+
+*   **MATLAB:** This toolbox is designed for use with MATLAB. While no specific version is strictly enforced, it has been developed using modern MATLAB features. Core MATLAB functionality is assumed.
+*   **QETLAB-Inspired Utilities:** Several utility functions within this toolbox (primarily in `QFIEntanglementToolbox.utils` and some core functions like `PartialTrace`, `PermuteSystems`, etc.) are inspired by or adapted from QETLAB (http://www.qetlab.com). These are included directly in this toolbox to ensure self-containment and consistent behavior. Users do not need to install QETLAB separately for these specific, included functions to work.
+*   **`TraceNorm` Function Requirement:** The function `QFIEntanglementToolbox.TraceNorm` (for calculating the trace norm) requires the MATLAB function `kpNorm.m`. This file is a part of QETLAB but is **not** included in this toolbox. For `TraceNorm` to function correctly, you must have `kpNorm.m` (typically obtained from a full QETLAB installation) available on your MATLAB path.
+*   **Other Functions:** Standard MATLAB functions are used throughout. The function `de2bi` (used in `randomHeisenbergZ.m` and `zeroTotalSpinLabel.m`) is typically available in standard MATLAB installations or the Communications Toolbox.
