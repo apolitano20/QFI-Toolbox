@@ -4,6 +4,11 @@
 
 - `src/+QFIEntanglementToolbox/*.m`
 - `src/+QFIEntanglementToolbox/+utils/*.m`
+- `src/+QFIEntanglementToolbox/+states/*.m`
+- `src/+QFIEntanglementToolbox/+hamiltonians/*.m`
+- `src/+QFIEntanglementToolbox/+entanglement/*.m`
+- `src/+QFIEntanglementToolbox/+qfi/*.m`
+- `src/+QFIEntanglementToolbox/+linalg/*.m`
 
 ## Legacy compatibility wrappers
 

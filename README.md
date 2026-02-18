@@ -9,6 +9,16 @@ This repository is under active structural refactoring. The canonical implementa
 - `src/+QFIEntanglementToolbox`
 - `src/+QFIEntanglementToolbox/+utils`
 
+Internal implementation is now split into domain subpackages:
+
+- `src/+QFIEntanglementToolbox/+states`
+- `src/+QFIEntanglementToolbox/+hamiltonians`
+- `src/+QFIEntanglementToolbox/+entanglement`
+- `src/+QFIEntanglementToolbox/+qfi`
+- `src/+QFIEntanglementToolbox/+linalg`
+
+Top-level `QFIEntanglementToolbox.<Function>` names remain the stable public API.
+
 Legacy root-level functions are kept as compatibility wrappers during the migration window and emit deprecation warnings.
 
 ## Installation

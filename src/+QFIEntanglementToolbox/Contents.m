@@ -1,4 +1,12 @@
-% QFIENTANGLEMENTTOOLBOX Core quantum information and entanglement functions.
+% QFIENTANGLEMENTTOOLBOX Core public API for quantum information workflows.
+%
+% Public functions in this package are stable entry points and may delegate
+% to internal implementation subpackages:
+%   QFIEntanglementToolbox.states
+%   QFIEntanglementToolbox.hamiltonians
+%   QFIEntanglementToolbox.entanglement
+%   QFIEntanglementToolbox.qfi
+%   QFIEntanglementToolbox.linalg
 %
 % Functions:
 %   GHZState                   - Generate a Greenberger-Horne-Zeilinger state.
