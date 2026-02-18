@@ -25,12 +25,8 @@ rho = QFIEntanglementToolbox.states.pureToMixed(statePsi);
 sigma = QFIEntanglementToolbox.states.pureToMixed(statePhi);
 
 deltaRhoSigma = rho - sigma;
-% The trace norm is the sum of the singular values.
 singularValues = svd(deltaRhoSigma); 
-% Singular values are non-negative by definition.
-% The original code's thresholding might have been to remove numerical noise.
-% A very small threshold is usually appropriate.
-singularValues(singularValues < 1e-12) = 0; % Thresholding small singular values
+singularValues(singularValues < 1e-12) = 0;
 distanceVal = 1/2*sum(singularValues);
 end
 

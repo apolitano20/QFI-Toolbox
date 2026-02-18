@@ -25,10 +25,6 @@ function jManualEnsemble = phaseShiftGenerator(chainLength,elevation,azimuth)
 
 %%	Building blocks definitions
     dim = 2^chainLength;
-    % Assuming elevation and azimuth are for a single configuration, not an ensemble.
-    % If they represent an ensemble, numBlochVec should be an input or determined differently.
-    % For now, assuming inputs are for one generator, so numBlochVec = 1.
-    % If elevation is L*N long for N vectors, then:
     if mod(length(elevation), chainLength) ~= 0
         error('Length of elevation vector must be a multiple of chainLength.');
     end
@@ -42,11 +38,10 @@ function jManualEnsemble = phaseShiftGenerator(chainLength,elevation,azimuth)
     sTotY = cell(chainLength,1);
     sTotZ = cell(chainLength,1);
     jManualEnsemble = cell(numBlochVec,1);
-    jBenchTemp = cell(chainLength,1); % Corrected variable name
+    jBenchTemp = cell(chainLength,1);
 %%	Bloch sphere vectors
 	radius = 1;
 	[x,y,z] = sph2cart(azimuth,elevation,radius);
-    % Reshape x,y,z if numBlochVec > 1 to match expected structure by mat2cell
     if numBlochVec > 1
         x = reshape(x, chainLength, numBlochVec);
         y = reshape(y, chainLength, numBlochVec);
@@ -68,7 +63,7 @@ function jManualEnsemble = phaseShiftGenerator(chainLength,elevation,azimuth)
 %%	Construction of the operator J
 for k = 1:numBlochVec
     jManualEnsemble{k} = sparse(dim,dim);
-    currentBlochConfig = blochConfigs{k}; % Get the k-th configuration
+    currentBlochConfig = blochConfigs{k};
     for jj = 1:chainLength
         jBenchTemp{jj} = 1/2*(currentBlochConfig(jj,1)*sTotX{jj} + currentBlochConfig(jj,2)*sTotY{jj} + currentBlochConfig(jj,3)*sTotZ{jj});
         jManualEnsemble{k} = jManualEnsemble{k} + jBenchTemp{jj};

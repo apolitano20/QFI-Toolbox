@@ -31,19 +31,7 @@ if nargin == 3
 end
 %% Memory allocation
 dim = 2^chainLength;
-hRandomEnsemble = zeros(dim,numTrials); % Output should represent Hamiltonians or sums, not just field configurations.
-                                      % The original code sums fields for each trial directly into HR.
-                                      % HR(:,k) = 1/2*sum(randomFieldsVec(:,k).*spinRep); implies HR is a sum, not an ensemble of H's.
-                                      % For an ensemble of Hamiltonians, HR would be a cell array.
-                                      % The current output is a dim x numTrials matrix, where each column is a sum for that trial.
-                                      % This seems to represent sum_k h_k S_k^z values for each trial, not the full Hamiltonian matrix.
-                                      % Let's rename to reflect it's a sum of z-components of fields.
-                                      % If it's meant to be an operator, it needs to be constructed differently.
-                                      % Based on H = sum_k h_k*S_k, where S_k is Sz for site k.
-                                      % The current code is calculating sum_k h_k * eigenvalues_of_Sz_for_all_sites.
-                                      % This is NOT a Hamiltonian matrix.
-                                      % For now, I will keep the logic but the physics interpretation is tricky.
-                                      % Let's assume hRandomEnsemble is a vector of total "Z-energy" for each configuration for now.
+hRandomEnsemble = zeros(dim,numTrials);
 
 %% random fields generation
 switch seed
@@ -57,11 +45,7 @@ switch seed
 	randomFieldsVec = hFieldMax*ones(chainLength,numTrials);
     hRandomEnsemble = zeros(dim,numTrials); % Re-initialize if numTrials changed
 end
-%%  Hamiltonian construction (Interpretation of H = sum_k h_k*S_k)
-% The original code calculates sum_k h_k * (diagonal of total Sz operator in Z-basis)
-% This is not the standard way to construct the Hamiltonian matrix.
-% A proper Hamiltonian would be H_R = sum_k h_k * S_k^z (operator sum)
-% For now, will replicate the original calculation.
+%%  Contribution along z-basis eigenstates
 binaryTable = QFIEntanglementToolbox.utils.indexToBits(0:dim-1, chainLength, true);
 spinRep = 1 - 2*binaryTable'; % Eigenvalues of sum(S_i^z) for each basis state
     for k = 1:numTrials        

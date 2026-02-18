@@ -35,12 +35,11 @@ function [maxQFI, varianceQFI, maxIndex] = stateQFI(inputState,numBlochVec,distr
 %%  BULDING BLOCKS and MEMORY ALLOCATION
     [dimState, numStates] = size(inputState);
     chainLength = log2(dimState);
-    qfiValues = zeros(numStates,numBlochVec); % Corrected variable name
+    qfiValues = zeros(numStates,numBlochVec);
 %%  PHASE SHIFT OPERATORS 
-	[jEnsemble, ~] = QFIEntanglementToolbox.qfi.phaseShiftEnsemble(chainLength,numBlochVec,distributionType); % Corrected call
-	QFIEntanglementToolbox.utils.progressBar('BlochVector') % Corrected call
-	for iBloch = 1:numBlochVec % Corrected variable name
-        % Ensure calculations are robust for single or multiple states
+	[jEnsemble, ~] = QFIEntanglementToolbox.qfi.phaseShiftEnsemble(chainLength,numBlochVec,distributionType);
+	QFIEntanglementToolbox.utils.progressBar('BlochVector')
+	for iBloch = 1:numBlochVec
         jOp = jEnsemble{iBloch};
         jOpSq = jOp^2;
         
@@ -54,10 +53,10 @@ function [maxQFI, varianceQFI, maxIndex] = stateQFI(inputState,numBlochVec,distr
         end
         
         qfiValues(:,iBloch) = 4 * (term1_sum_elements - term2_sum_elements_sq);
-        QFIEntanglementToolbox.utils.progressBar(iBloch/numBlochVec) % Corrected call
+        QFIEntanglementToolbox.utils.progressBar(iBloch/numBlochVec)
 	end
 	qfiValues = real(qfiValues);
-	[maxQFI, maxIndex] = max(qfiValues,[],2); % Corrected variable names
-	varianceQFI = var(qfiValues,0,2); % Corrected variable name
+	[maxQFI, maxIndex] = max(qfiValues,[],2);
+	varianceQFI = var(qfiValues,0,2);
 end
 
