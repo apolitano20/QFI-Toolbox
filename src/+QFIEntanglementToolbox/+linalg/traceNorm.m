@@ -6,14 +6,30 @@
 %
 %   URL: http://www.qetlab.com/TraceNorm
  
-%   requires: kpNorm.m (MISSING external dependency, expected from QETLAB)
+%   requires: kpNorm.m from QETLAB (optional, numeric fallback is available)
 %   author: Nathaniel Johnston (nathaniel@njohnston.ca)
 %   package: QFIEntanglementToolbox (Inspired by QETLAB)
  
 function normVal = traceNorm(inputOp)
  
-% The kpNorm function is expected to be available from QETLAB.
-% If QETLAB is not installed or kpNorm.m is not in the path, this will error.
-normVal = kpNorm(inputOp,min(size(inputOp)),1);
+% Prefer QETLAB's kpNorm when available.
+if exist('kpNorm', 'file') == 2
+    try
+        normVal = kpNorm(inputOp, min(size(inputOp)), 1);
+        return;
+    catch kpErr
+        warning('QFIEntanglementToolbox:TraceNormFallback', ...
+            'kpNorm failed (%s). Falling back to SVD-based trace norm.', kpErr.message);
+    end
+end
+
+% Fallback for numeric operators when QETLAB is unavailable.
+if ~isnumeric(inputOp)
+    error('QFIEntanglementToolbox:TraceNormMissingDependency', ...
+        ['traceNorm requires kpNorm.m for non-numeric operators. ' ...
+         'Install QETLAB or provide a numeric operator.']);
+end
+
+normVal = sum(svd(full(inputOp)));
 end
 

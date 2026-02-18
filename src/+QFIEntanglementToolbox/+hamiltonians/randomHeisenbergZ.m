@@ -62,7 +62,8 @@ end
 % This is not the standard way to construct the Hamiltonian matrix.
 % A proper Hamiltonian would be H_R = sum_k h_k * S_k^z (operator sum)
 % For now, will replicate the original calculation.
-spinRep = 1 - 2*de2bi(0:dim-1,chainLength,'left-msb')'; % Eigenvalues of sum(S_i^z) for each basis state
+binaryTable = QFIEntanglementToolbox.utils.indexToBits(0:dim-1, chainLength, true);
+spinRep = 1 - 2*binaryTable'; % Eigenvalues of sum(S_i^z) for each basis state
     for k = 1:numTrials        
       hRandomEnsemble(:,k) = 1/2*sum(randomFieldsVec(:,k).*spinRep, 1)'; % Sum over sites for each basis state, ensure column
     end

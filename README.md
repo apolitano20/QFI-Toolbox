@@ -54,8 +54,7 @@ See:
 | Dependency | Required by | Notes |
 |---|---|---|
 | MATLAB (R2020a+) | entire toolbox | baseline target for this refactor |
-| `kpNorm.m` (QETLAB) | `QFIEntanglementToolbox.traceNorm` | not bundled in this repository |
-| `de2bi` | `randomHeisenbergZ`, `zeroTotalSpinLabel` | typically available in Communications Toolbox |
+| `kpNorm.m` (QETLAB, optional) | `QFIEntanglementToolbox.traceNorm` | used when available; numeric fallback uses SVD |
 
 ## Backward-Compatibility Policy
 
@@ -68,6 +67,7 @@ See:
 - Examples: `examples/`
 - API docs generator: `doc/generate_api_docs.m`
 - Release checks: `scripts/release_check.m`
+- Legacy wrapper generator: `scripts/generate_legacy_wrappers.m`
 
 ## Testing Without MATLAB (GNU Octave)
 

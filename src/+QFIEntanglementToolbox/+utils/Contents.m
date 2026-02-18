@@ -3,6 +3,7 @@
 % Functions:
 %   ByteSize    - Write variable memory footprint to file.
 %   cleanMat    - Zero small real/imaginary matrix entries.
+%   indexToBits - Convert integer indices to fixed-width binary rows.
 %   mKron       - Compute chained Kronecker products.
 %   optArgs     - Parse optional input arguments.
 %   progressBar - Print progress indicator.

@@ -32,5 +32,11 @@ classdef test_linear_algebra_smoke < matlab.unittest.TestCase
             d = QFIEntanglementToolbox.traceDistance(psi, psi);
             testCase.verifyEqual(d, 0, 'AbsTol', testCase.AbsTol);
         end
+
+        function testTraceNormNumeric(testCase)
+            op = [3 0; 0 -4];
+            n = QFIEntanglementToolbox.traceNorm(op);
+            testCase.verifyEqual(n, 7, 'AbsTol', testCase.AbsTol);
+        end
     end
 end

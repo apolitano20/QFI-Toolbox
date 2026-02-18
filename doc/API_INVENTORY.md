@@ -59,8 +59,7 @@ Root-level `.m` files with legacy names now forward to package functions and emi
 
 ## External dependency gates
 
-- `kpNorm.m` required for `QFIEntanglementToolbox.traceNorm`
-- `de2bi` used by `QFIEntanglementToolbox.randomHeisenbergZ` and `QFIEntanglementToolbox.zeroTotalSpinLabel`
+- `kpNorm.m` is optional for `QFIEntanglementToolbox.traceNorm` (numeric fallback uses SVD)
 
 ## Test coverage status
 

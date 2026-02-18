@@ -32,5 +32,11 @@ classdef test_states_and_hamiltonians_smoke < matlab.unittest.TestCase
             testCase.verifySize(h, [8 8]);
             testCase.verifyEqual(full(h), full(h'), 'AbsTol', testCase.AbsTol);
         end
+
+        function testRandomHeisenbergZShape(testCase)
+            hz = QFIEntanglementToolbox.randomHeisenbergZ(3, 1.0, 2, 'noseed');
+            testCase.verifySize(hz, [8 2]);
+            testCase.verifyClass(hz, 'double');
+        end
     end
 end

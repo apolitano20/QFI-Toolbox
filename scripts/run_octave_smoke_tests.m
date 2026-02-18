@@ -26,6 +26,9 @@ hxxz = QFIEntanglementToolbox.heisenbergXXZ(3, 1.0);
 assert(isequal(size(hxxz), [8, 8]), 'heisenbergXXZ size check failed.');
 assert(norm(full(hxxz) - full(hxxz'), 'fro') < 1e-10, 'heisenbergXXZ hermiticity check failed.');
 
+hz = QFIEntanglementToolbox.randomHeisenbergZ(3, 1.0, 2, 'noseed');
+assert(isequal(size(hz), [8, 2]), 'randomHeisenbergZ size check failed.');
+
 % 3) Entanglement/QFI basic paths
 bounds = QFIEntanglementToolbox.boundQFI(6);
 assert(numel(bounds) == 6, 'boundQFI output size check failed.');
@@ -62,6 +65,10 @@ assert(isequal(size(permOut), [8, 1]), 'PermuteSystems size check failed.');
 
 distSelf = QFIEntanglementToolbox.traceDistance(ghz, ghz);
 assert(abs(distSelf) < 1e-10, 'traceDistance identity check failed.');
+
+op = [3 0; 0 -4];
+tn = QFIEntanglementToolbox.traceNorm(op);
+assert(abs(tn - 7) < 1e-10, 'traceNorm numeric check failed.');
 
 % 5) Wrapper parity checks (legacy API compatibility)
 ghzLegacy = GHZState(3);
