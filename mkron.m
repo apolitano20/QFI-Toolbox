@@ -1,13 +1,11 @@
-function X = mkron(varargin)
-% MKRON  This is how kron should work, dammit.
-%  X = mkron(A, B, ...)
-%
-%  Returns the tensor (Kronecker) product X = A \otimes B \otimes ...
+function varargout = mkron(varargin)
+%MKRON Backward-compatible wrapper for migrated package API.
+%   Deprecated: use QFIEntanglementToolbox.utils.mKron instead.
 
-% Ville Bergholm 2009
-
-
-X = 1;
-for k = 1:nargin
-  X = kron(X, varargin{k});
+qfiDeprecatedRootApi('mkron', 'QFIEntanglementToolbox.utils.mKron');
+if nargout > 0
+    [varargout{1:nargout}] = QFIEntanglementToolbox.utils.mKron(varargin{:});
+else
+    QFIEntanglementToolbox.utils.mKron(varargin{:});
+end
 end

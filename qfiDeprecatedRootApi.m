@@ -1,0 +1,6 @@
+function qfiDeprecatedRootApi(legacyName, packageName)
+%QFIDEPRECATEDROOTAPI Warn about legacy root-level API usage.
+warning('QFIEntanglementToolbox:DeprecatedRootAPI', ...
+    ['Legacy root-level function "', legacyName, '" is deprecated and will be removed in v2.0.0. ' ...
+     'Use "', packageName, '" instead.']);
+end

@@ -1,11 +1,11 @@
-% QFIENTANGLEMENTTOOLBOX.UTILS Utility functions.
+% QFIENTANGLEMENTTOOLBOX.UTILS Utility helper functions.
 %
 % Functions:
-%   byteSize      - writes the memory usage of the provide variable to the given file
-%   cleanMat      - sets a treshoold accuracy for an input marix V
-%   mKron         - This is how kron should work, dammit.
-%   optArgs       - Handles optional input arguments for functions
-%   progressBar   - provides an indication of the progress of some task using
-%   randPdf       - Random numbers from a user defined distribution
-%   uniquePerms   - Computes the unique permutations of a vector
-%   vectArrow     - 3-D vector plot.
+%   ByteSize    - Write variable memory footprint to file.
+%   cleanMat    - Zero small real/imaginary matrix entries.
+%   mKron       - Compute chained Kronecker products.
+%   optArgs     - Parse optional input arguments.
+%   progressBar - Print progress indicator.
+%   randPdf     - Sample from user-defined distribution.
+%   uniquePerms - Compute unique permutations of a vector.
+%   vectArrow   - Plot 3-D vectors.
